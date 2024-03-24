@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a5ed5a99.css",
+    "main.js": "/static/js/main.a26c5b0e.js",
+    "static/media/Eureka.PNG": "/static/media/Eureka.e800b923f3f70e885f46.PNG",
+    "static/media/React.png": "/static/media/React.8a6fc0a24a800d1e0f4a.png",
+    "static/media/connect.PNG": "/static/media/connect.ec0d7cdfec06be5c0058.PNG",
+    "static/media/nodeJs.png": "/static/media/nodeJs.fc3bd1ec69d7a50e685a.png",
+    "static/media/linkedinPhoto.svg": "/static/media/linkedinPhoto.3f3b2e35c9ad35e87700.svg",
+    "static/media/Tailwind_CSS_logo.svg.png": "/static/media/Tailwind_CSS_logo.svg.9440f6b718743116ccb0.png",
+    "static/media/hoopTracker.PNG": "/static/media/hoopTracker.c1f7422ccd55253d65be.PNG",
+    "static/media/teamwork.webp": "/static/media/teamwork.f41783094667a369306d.webp",
+    "static/media/communication.png": "/static/media/communication.f699f6fa992839888519.png",
+    "static/media/attentionToDetail.png": "/static/media/attentionToDetail.e176bf2cd9872156b288.png",
+    "static/media/problemSolving.png": "/static/media/problemSolving.d1634bc80f3703571a78.png",
+    "static/media/1024px-HTML5_Badge.svg.png": "/static/media/1024px-HTML5_Badge.svg.1336fa4c1237f6c1032d.png",
+    "static/media/adaptability.png": "/static/media/adaptability.1d00db21737c1708a7f9.png",
+    "static/media/table.PNG": "/static/media/table.615dc20a4464b08f475d.PNG",
+    "static/media/Spring_Boot.svg.png": "/static/media/Spring_Boot.svg.c8850f4e6cd19f972a40.png",
+    "static/media/YorkUni.png": "/static/media/YorkUni.4d0abe2ffe2e2bf473fa.png",
+    "static/media/timeManagement.png": "/static/media/timeManagement.117640074976c115f108.png",
+    "static/media/javascript.png": "/static/media/javascript.53a72c2f1b8894adc207.png",
+    "static/media/jquery.svg": "/static/media/jquery.ab812caf9c78eb016e5d.svg",
+    "static/media/java.svg": "/static/media/java.68585ce8dadbd8ecebdc.svg",
+    "static/media/firebase.svg": "/static/media/firebase.334c7505aa7b42a0a640.svg",
+    "static/media/leftBranch.svg": "/static/media/leftBranch.144899c607f999166f98.svg",
+    "static/media/rightBranch.svg": "/static/media/rightBranch.badd2aff2f464df34471.svg",
+    "static/media/mongodb.svg": "/static/media/mongodb.bfa6cdd80f4a99232cad.svg",
+    "static/media/CSS.svg": "/static/media/CSS.6ec1697a406483c72ccf.svg",
+    "index.html": "/index.html",
+    "main.a5ed5a99.css.map": "/static/css/main.a5ed5a99.css.map",
+    "main.a26c5b0e.js.map": "/static/js/main.a26c5b0e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a5ed5a99.css",
+    "static/js/main.a26c5b0e.js"
+  ]
+}
