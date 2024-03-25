@@ -1,4 +1,4 @@
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { useEffect, useState } from "react";
@@ -10,9 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 
 function App() {
-  const parallaxRef = React.useRef();
+  const parallaxRefs = React.useRef({});
   const [techSkills, setTechSkills] = useState(true);
-  console.log("awfg");
   
   const onLinkedInClick = () => {
     window.open("https://www.linkedin.com/in/andrew-kim-19171a1b7/");
@@ -60,14 +59,14 @@ function App() {
   useEffect(() => {
 
     window.onload = function(){
-      console.log(parallaxRef.current.container.current.style.overflow)
-      parallaxRef.current.container.current.style.overflow = 'hidden';
+
+      parallaxRefs.current["Parallax"].container.current.style.overflow = 'hidden';
 
       setTimeout(() => {
-        parallaxRef.current.container.current.style.overflow = 'hidden scroll';
+        parallaxRefs.current["Parallax"].container.current.style.overflow = 'hidden scroll';
       }, 1200);
       
-      if (parallaxRef.current) {
+      if (parallaxRefs.current["Parallax"]) {
         const path = document.querySelector('.progressBar');
         const PathLength = path.getTotalLength();
         path.style.strokeDashOffset = 0;
@@ -76,16 +75,16 @@ function App() {
         path.style.strokeDashOffset = PathLength;
   
         const handleScroll = () => {
-          const scrollPercentage = (parallaxRef.current.current / parallaxRef.current.space) / 5;
+          const scrollPercentage = (parallaxRefs.current["Parallax"].current / parallaxRefs.current["Parallax"].space) / 5;
   
           const drawLength = PathLength * scrollPercentage;
   
           path.style.strokeDashoffset = PathLength - drawLength;
         };
 
-        console.log(parallaxRef.current.container.current);
+        console.log(parallaxRefs.current["Parallax"].container.current);
   
-        parallaxRef.current.container.current.addEventListener('scroll', handleScroll);
+        parallaxRefs.current["Parallax"].container.current.addEventListener('scroll', handleScroll);
         
       }
 
@@ -94,7 +93,7 @@ function App() {
       skillContainer.addEventListener('wheel', (e) => {
         console.log(e.deltaY);
         e.preventDefault();
-        parallaxRef.current.container.current.scrollBy(0, e.deltaY)
+        parallaxRefs.current["Parallax"].container.current.scrollBy(0, e.deltaY)
       });
 
       const leftObserver = new IntersectionObserver(entries => {
@@ -141,7 +140,8 @@ function App() {
   
   return (
     <div className="App">
-      <Parallax pages={4.3} ref={parallaxRef} className="overflow-hidden">
+      <Parallax pages={4.3} ref={ref => (parallaxRefs.current["Parallax"] = ref )} className="overflow-hidden">
+        
         <ParallaxLayer sticky={{start: 0, end: 6}}>
           <div className="sm:hidden fixed top-0 right-0 flex flex-col items-center pt-10 w-[200px] h-[200px] overflow-hidden text-center progressBarContainer xl:fixed">
               <svg className="height-[100%] inline-block" viewBox="0 0 210 297" preserveAspectRatio="xMidYMax meet">
@@ -161,10 +161,10 @@ function App() {
           </div>
 
         <div className=" contentBox">
-            <div className="flex items-center justify-center pt-20">
+            <div className="flex items-center justify-center sm:pt-10 md:pt-20 sm:flex-col md:flex-row">
               <div className="photo h-[500px] w-[500px] border-solid border-2 border-black"/>
               <div className="ml-2">
-                <h1 className="text-4xl font-bold">My name is Andrew Kim</h1>
+                <h1 className="text-4xl font-bold sm:mt-10 md:mt-0">My name is Andrew Kim</h1>
                 <p className="text-xl">I am an aspiring web/software developer with the passion to <b>learn</b> and <b>create</b></p>
                 <b className="block mt-10">Current Goals:</b>
                 <ul className="ml-10">
@@ -177,7 +177,7 @@ function App() {
               </div>
             </div>
         </div>
-          <div className="flex flex-col w-[120px] arrowBox items-center absolute bottom-0 left-0">
+          <div className="sm:hidden md:visible flex flex-col w-[120px] arrowBox items-center absolute bottom-0 left-0">
             <b className="text-sm">for more info :D</b>
             <FontAwesomeIcon icon={faArrowDown}  className="w-10 h-10 aspect-square"/>
           </div>
@@ -204,6 +204,7 @@ function App() {
                     text={"As the first language I've learned, I have a good understanding of the language and its concepts and have used it to create a variety of projects. It was my coding foundation to learn other languages."}
                     title={"Java"}
                     image={"javaLogo"}
+                    
                   />
                   <SkillBox 
                     text={"Using HTML, I have created a variety of web pages and believe I have a good understanding of the language and its concepts."}
@@ -274,9 +275,10 @@ function App() {
             
         </ParallaxLayer>
 
-        <ParallaxLayer offset={2.7} speed={1} factor={1.2} className="bg-white">
-          <div className="items-center pt-2 text-4xl font-bold text-center ">Projects</div>
-          <div className="flex flex-col items-center mt-[300px]">
+        <ParallaxLayer offset={2.7} speed={1} factor={1.2} className="z-50 bg-white">
+          <div className="items-center pt-2 text-4xl font-bold text-center mt-[-300px]">Projects</div>
+          <div className="flex flex-col items-center md:mt-[300px] sm:mt-[170px]">
+            
             <BranchBox side="leftBranchBox" title="Link Generator" image="linkGenerator" text="this full stack website is used for creating and saving links. I created this personally so that I could send big files to my friends on discord. I used React as the front end and spring boot as my backend"/>
             <BranchBox side="rightBranchBox" title="Connect 4" image="connect" text="this was a fun website i developed based off a figma design file provided by frontEndMentor. It utilizes animations and response design that makes it very appealing"/>
             <BranchBox side="leftBranchBox" title="Hoop Tracker" image="hoopTracker" text="Hoop tracker was made so that I could track my stats in a mens league basketball division I entered with peers. it uses Firebase for authentication and its backend. The front end was built with React"/>
@@ -295,7 +297,7 @@ function App() {
 
             <div className="grid grid-cols-3 h-[100px]">
             <div className="flex items-center justify-center font-bold text-center text-black align-middle bg-blue-600 cursor-pointer" onClick={() => {onLinkedInClick()}}>Visit my LinkedIn</div>
-            <div className="flex items-center justify-center font-bold text-center text-black align-middle bg-white cursor-pointer">contact me!: andrewkim09@hotmail.com</div>
+              <div className="flex items-center justify-center font-bold text-center text-black align-middle bg-white cursor-pointer"><span className="sm:hidden md:visible">contact me!:</span><span className="sm:text-[10px] sm:block md:inline md:text-[16px]"> andrewkim09@hotmail.com</span></div>
             <div className="flex items-center justify-center font-bold text-center text-white align-middle bg-black cursor-pointer" onClick={() => {onGithubClick()}}>Visit my Github</div>
           </div>
             

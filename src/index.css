@@ -21,7 +21,8 @@ code {
 
 
 .skillsBoxContainer::-webkit-scrollbar{
-  width: 10px;
+  width: 20px;
+
 }
 
 .skillsBoxContainer::-webkit-scrollbar-thumb {
@@ -35,6 +36,7 @@ code {
 
 .skillsBoxContainer::-webkit-scrollbar-track {
   background-color: transparent;
+  
 }
 
 @keyframes curtainAnimation{
