@@ -143,11 +143,6 @@ function App() {
       <Parallax pages={4.3} ref={ref => (parallaxRefs.current["Parallax"] = ref )} className="overflow-hidden">
         
         <ParallaxLayer sticky={{start: 0, end: 6}}>
-          <div className="sm:hidden fixed top-0 right-0 flex flex-col items-center pt-10 w-[200px] h-[200px] overflow-hidden text-center progressBarContainer xl:fixed">
-              <svg className="height-[100%] inline-block" viewBox="0 0 210 297" preserveAspectRatio="xMidYMax meet">
-                <path className="progressBar" d="m88.991 54.987 48.475 53.901-90.438 57.881 107.8 49.199-78.139 60.051" fill="none" stroke="blue" strokeLinecap="round" strokeWidth="2.6162"/>
-              </svg>
-        </div>
         
         </ParallaxLayer>
         <ParallaxLayer speed={1} sticky={{start: 0, end:1}} factor={1}>
@@ -162,7 +157,7 @@ function App() {
 
         <div className=" contentBox">
             <div className="flex items-center justify-center sm:pt-10 md:pt-20 sm:flex-col md:flex-row">
-              <div className="photo h-[500px] w-[500px] border-solid border-2 border-black"/>
+              <div className="photo h-[300px] w-[300px] md:h-[500px] md:w-[500px] border-solid border-2 border-black"/>
               <div className="ml-2">
                 <h1 className="text-4xl font-bold sm:mt-10 md:mt-0">My name is Andrew Kim</h1>
                 <p className="text-xl">I am an aspiring web/software developer with the passion to <b>learn</b> and <b>create</b></p>
@@ -187,7 +182,7 @@ function App() {
             <div className="items-center pt-2 text-4xl font-bold text-center text-white bg-transparent">{techSkills ? "Technical Skills" : "Soft Skills"}</div>
 
             <div className="grid items-center justify-center pt-10 overflow-scroll overflow-x-hidden text-white sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-y-6">
-              <div className="absolute flex flex-col top-5 right-5">
+              <div className="absolute flex flex-col top-12 md:top-5 right-5">
                 <div className=" bg-white h-5 w-[60px] rounded-full flex items-center px-0.5 cursor-pointer skillsTab relative">
                   <div className="absolute w-4 h-4 ml-0 bg-black rounded-full left-1 skillsBall "/>
                 </div>
