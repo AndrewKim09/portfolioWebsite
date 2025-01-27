@@ -1,10 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bayon&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Bayon", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -104,6 +104,15 @@ code {
   }
 }
 
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
 @keyframes glowIn{
   0%{
     width: calc(0%);
@@ -185,11 +194,12 @@ code {
   top: -4px;
   background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000);
   background-size: 400%;
+  border-radius: 5000px;
   width: calc(100% + 10px);
   height: calc(100% + 10px);
   z-index: -1;
 
-  animation: animate 20s linear infinite, glowIn .5s ease-out;
+  animation: animate 20s linear infinite, fadeIn 1s;
 
 }
 
@@ -279,6 +289,15 @@ code {
   transition: left 0.2s ease-in-out;
 }
 
+.skillsImage{
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position-y: 70%;
+  background-position-x: center;
+
+  aspect-ratio: 1/1;
+}
+
 .hoopTracker{
   background-image: url("./images/hoopTracker.PNG");
   background-size:cover;
@@ -298,7 +317,6 @@ code {
   background-image: url("./images/github.png");
   background-size:contain;
   width: 100%;
-  margin-top: 80px;
   margin-bottom: 40px;
   height: 100px;
 
@@ -308,183 +326,182 @@ code {
 
 .CSS{
   background-image: url("./images/CSS.svg");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  height: 150px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .HTML{
   background-image: url("./images/1024px-HTML5_Badge.svg.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  height: 150px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .JavaScript{
   background-image: url("./images/javascript.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .react{
   background-image: url("./images/React.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  margin-bottom: 40px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .Node{
   background-image: url("./images/nodeJs.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  margin-bottom: 40px;
-
-  height: 100px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .Tailwind{
   background-image: url("./images/Tailwind_CSS_logo.svg.png");
-  background-size:contain;
-  width: 80%;
-  margin-top: 80px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .springBoot{
   background-image: url("./images/Spring_Boot.svg.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .jquery{
   background-image: url("./images/jquery.svg");
-  background-size:contain;
-  width: 100%;
-  margin-top: 40px;
-  height: 200px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .mongodb{
   background-image: url("./images/mongodb.svg");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .firebase{
   background-image: url("./images/firebase.svg");
-  background-size:contain;
-  width: 100%;
-  margin-top: 80px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
+
+.reactThreeFiber{
+  background-image: url("./images/reactThreeFiber.png");
+}
+
+.awsCloud{
+  background-image: url("./images/awsCloud.png");
+}
+
+.Blender{
+  background-image: url("./images/Blender.png");
+}
+
+.CSharp{
+  background-image: url("./images/CSharp.svg");
+}
+
+.docker{
+  background-image: url("./images/docker.jpeg");
+}
+
+.MySQL{
+  background-image: url("./images/MySQL.png");
+}
+
+.postman{
+  background-image: url("./images/postman.png");
+}
+
+
+
+
+
 
 .communication{
   background-image: url("./images/communication.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .adaptable{
   background-image: url("./images/adaptability.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .teamwork{
   background-image: url("./images/teamwork.webp");
-  background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .timeManagement{
   background-image: url("./images/timeManagement.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .problemSolving{
   background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .attentionToDetail{
   background-image: url("./images/attentionToDetail.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .adaptability{
   background-image: url("./images/adaptability.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
 .problemSolving{
   background-image: url("./images/problemSolving.png");
-  background-size:contain;
-  width: 100%;
-  margin-top: 60px;
-  height: 160px;
-  background-repeat: no-repeat;
-  background-position-x: center;
 }
 
+.gradient-text {
+  background: linear-gradient(to right, #22c55e, #48f9ff);
+  display: inline-block;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gradient-text2 {
+  background: linear-gradient(to right, #4dc7ff, #6cc522);
+  display: inline-block;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.leftImage{
+  transform: perspective(100px) rotate3D(0, 1, 0, 5deg);
+}
+
+.rightImage{
+  transform: perspective(100px) rotate3D(0, 1, 0, -5deg);
+}
+
+.projectsContainer{
+  
+  scrollbar-width: auto; /* Shows scrollbar (for Firefox) */
+  -ms-overflow-style: auto; /* Default scrollbar for IE/Edge */
+  scrollbar-gutter: 10px; /* Scrollbar space */
+}
+
+
+.projectsContainer::-webkit-scrollbar {
+  height: 8px; /* Adjust scrollbar height */
+}
+
+.projectsContainer::-webkit-scrollbar-thumb {
+  background: #888; /* Scrollbar color */
+  border-radius: 4px; /* Rounded corners for scrollbar */
+}
+
+.projectsContainer::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Scrollbar hover color */
+}
+
+.card-inner{
+  transition: transform 0.6s; 
+  transform-style: preserve-3d;
+}
+
+.card-inner:hover{
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+.card-front {
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.card-back {
+  background: black;
+  color: white;
+  transform: rotateY(180deg);
+}
