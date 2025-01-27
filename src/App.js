@@ -392,9 +392,9 @@ function App() {
 
                 <h1 className="text-white mt-[50px] text-xl text-center">Eureka</h1>
                 <p className="p-[10px] text-gray-200 text-lg ">
-                  This is a full stack website I made using Firebase and React. It is a fun project I decided to do in my early years of university upon analyzing the universities e-class.
-
+                  This is a full stack website I made using Firebase and React. It is a fun project I decided to do in my early years of university upon analyzing the universities e-class.                  
                 </p>
+                <p className="mt-4 text-center text-gray-200 text-md">hosted on github pages</p>
               </motion.div>
 
               <motion.div variants={childVariants} className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer" onClick={() => {window.location.href = "https://dev.d3hu1k9aj04e16.amplifyapp.com/"}}>
@@ -406,6 +406,7 @@ function App() {
                     This is a full stack website I made using SpringBoot and React. It is a simple invoice app that allows users to create, edit, and delete invoices.
                     It features pixel perfect design that dynamically changes on different screen sizes and a simple user interface.
                   </p>
+                  <p className="mt-4 text-center text-gray-200 text-md">hosted on aws</p>
               </motion.div>
             </motion.div>
 
