@@ -1,7 +1,7 @@
 import { faArrowDown, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import React from "react";
 import { SkillBox } from "./images/components/SkillBox";
 import { BranchBox } from "./images/components/BranchBox";
@@ -27,6 +27,8 @@ function App() {
   const [webAnimation, setWebAnimation] = useState();
   const [backendAnimation, setBackendAnimation] = useState();
   const [toolAnimation, setToolAnimation] = useState();
+
+  const projectBoxRefs = useRef([]);
 
   
 
@@ -121,13 +123,25 @@ function App() {
     visible: { opacity: 1, y: 0 },
   };
 
-  hover(".projectBox", (element) => {
-    const animation = animate(element,{scale: 1.1, boxShadow: "0px 0px 10px 0px #210c2e"});
+  const handleAnimation = (element) => {
+    if (element) {
+      const handleMouseEnter = () => {
+        animate(element, { scale: 1.1, boxShadow: "0px 0px 10px 0px #210c2e" });
+      };
 
-    return (endEvent) => {
-      animate(element, {scale: 1, boxShadow: "0px 0px 0px 0px #210c2e"});
+      const handleMouseLeave = () => {
+        animate(element, { scale: 1, boxShadow: "0px 0px 0px 0px #210c2e" });
+      };
+      element.addEventListener("mouseenter", handleMouseEnter);
+      element.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        element.removeEventListener("mouseenter", handleMouseEnter);
+        element.removeEventListener("mouseleave", handleMouseLeave);
+      };
     }
-  })
+  };
+  
 
   return (
     <div className="App">
@@ -375,7 +389,17 @@ function App() {
               viewport={{ once: true, amount: 0.5 }} // Trigger animation when 50% in view
               className="flex min-w-full w-auto h-[1000px] justify-between items-center px-[2%] lg:px-[10%] overflow-x-auto scroll-smooth projectsContainer" // Apply consistent gaps
             >
-              <motion.div variants={childVariants} className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative cursor-pointer projectBox" onClick={() => {window.location.href = "https://master.d1a1fvsqctjek5.amplifyapp.com/"}}>
+              <motion.div 
+                ref={(element) => {
+                  if (element && !projectBoxRefs.current.includes(element)) {
+                    projectBoxRefs.current.push(element); 
+                  }
+                }}
+                variants={childVariants} 
+                className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative cursor-pointer projectBox" 
+                onClick={() => {window.location.href = "https://master.d1a1fvsqctjek5.amplifyapp.com/"}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[0])}}
+                >
                   <AppleVsSamsung className=" aspect-auto h-[150px] w-auto absolute top-[-143px] left-[-50px]"/>
                   <img src={AppleVsSamsungPic1} alt="appleVsSamsung" className=" w-[400px] h-[220px] top-[40px] border-4 border-gray-200 border-solid  rounded-xl leftImage mt-4"/>
                   <h1 className="text-white mt-[50px] text-xl text-center font-semibold">Apple Vs Samsung</h1>
@@ -386,7 +410,17 @@ function App() {
 
                   <p className="mt-4 text-center text-gray-200 text-md">hosted on aws</p>
               </motion.div>
-              <motion.div variants={childVariants} className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer"  onClick={() => {window.location.href = "https://andrewkim09.github.io/Eureka/#/"}}>
+              <motion.div   
+                ref={(element) => {
+                  if (element && !projectBoxRefs.current.includes(element)) {
+                    projectBoxRefs.current.push(element);
+                  }
+                }}
+                variants={childVariants} 
+                className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer"  
+                onClick={() => {window.location.href = "https://andrewkim09.github.io/Eureka/#/"}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[1])}}
+              >
                 <SchoolLogo className="aspect-auto h-[150px] w-auto absolute top-[-113px] left-[-50px] text-gray-400"/>
                   <img src={schoolpic1} alt="Eureka" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl mt-[40px]"/>
 
@@ -397,7 +431,17 @@ function App() {
                 <p className="mt-4 text-center text-gray-200 text-md">hosted on github pages</p>
               </motion.div>
 
-              <motion.div variants={childVariants} className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer" onClick={() => {window.location.href = "https://dev.d3hu1k9aj04e16.amplifyapp.com/"}}>
+              <motion.div 
+                ref={(element) => {
+                  if (element && !projectBoxRefs.current.includes(element)) {
+                    projectBoxRefs.current.push(element); 
+                  }
+                }}
+                variants={childVariants} 
+                className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer" 
+                onClick={() => {window.location.href = "https://dev.d3hu1k9aj04e16.amplifyapp.com/"}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[2])}}
+              >
                   <LinkSvg className="aspect-auto h-[150px] w-auto absolute top-[-73px] left-[-50px] text-gray-400"/>
                   <img src={invoiceApp} alt="invoiceapp" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl rightImage mt-4"/>
 
