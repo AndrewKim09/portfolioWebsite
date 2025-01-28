@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolioWebsite/static/css/main.543dc2a2.css",
-    "main.js": "/portfolioWebsite/static/js/main.a74fa3c9.js",
+    "main.css": "/portfolioWebsite/static/css/main.8619710d.css",
+    "main.js": "/portfolioWebsite/static/js/main.301466c5.js",
     "static/media/Eureka.PNG": "/portfolioWebsite/static/media/Eureka.e800b923f3f70e885f46.PNG",
     "static/media/AppleVsSamsung.svg": "/portfolioWebsite/static/media/AppleVsSamsung.518470a5d43d8ec667aaee6184d2e862.svg",
     "static/media/appleVsSamsungpic2.JPG": "/portfolioWebsite/static/media/appleVsSamsungpic2.de750185a6f3c6359ed4.JPG",
@@ -40,11 +40,11 @@
     "static/media/CSharp.svg": "/portfolioWebsite/static/media/CSharp.76f7c38864535e2e035f.svg",
     "static/media/CSS.svg": "/portfolioWebsite/static/media/CSS.6ec1697a406483c72ccf.svg",
     "index.html": "/portfolioWebsite/index.html",
-    "main.543dc2a2.css.map": "/portfolioWebsite/static/css/main.543dc2a2.css.map",
-    "main.a74fa3c9.js.map": "/portfolioWebsite/static/js/main.a74fa3c9.js.map"
+    "main.8619710d.css.map": "/portfolioWebsite/static/css/main.8619710d.css.map",
+    "main.301466c5.js.map": "/portfolioWebsite/static/js/main.301466c5.js.map"
   },
   "entrypoints": [
-    "static/css/main.543dc2a2.css",
-    "static/js/main.a74fa3c9.js"
+    "static/css/main.8619710d.css",
+    "static/js/main.301466c5.js"
   ]
 }
