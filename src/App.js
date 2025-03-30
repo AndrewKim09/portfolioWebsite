@@ -169,8 +169,7 @@ function App() {
                   My name is Andrew Kim
                 </h1>
                 <p className="mt-4 text-xl">
-                  I am a software developer with the passion to <b>learn</b> and{" "}
-                  <b>create</b>.{" "}
+                  I am a <b>Full-Stack Developer</b> specializing in React, Typescript, And Java
                 </p>
                 <b className="block mt-10 gradient-text">I have recently:</b>
                 <p className="mt-4 text-lg md:pr-[50px] lg:pr-[200px] xl:pr-[400px]">
@@ -178,6 +177,8 @@ function App() {
                   <b>Apple's</b> and <b>Samsung's</b> flagship phone models
                   during some of their major years in innovation. It features
                   react three fiber and models I've created in blender
+                  <br/>
+                  
                 </p>
                 <ul className="ml-10">
                   <li></li>
