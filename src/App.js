@@ -3,25 +3,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { useEffect, useRef, useState } from "react";
 import React from "react";
-import { SkillBox } from "./images/components/SkillBox";
-import { BranchBox } from "./images/components/BranchBox";
+import { SkillBox } from "./components/SkillBox";
 import {hover, motion} from 'motion/react';
+import { animate, distance, transform } from "framer-motion";
+import {ReactComponent as AppleVsSamsung} from "./svg/AppleVsSamsung.svg";
+import {ReactComponent as SchoolLogo} from "./svg/school.svg";
+import {ReactComponent as LinkSvg} from "./svg/link.svg";
 
-import {ReactComponent as AppleVsSamsung} from './images/projects/AppleVsSamsung.svg';
-import AppleVsSamsungPic1 from './images/projects/appleVsSamsungpic1.jpg';
-import AppleVsSamsungPic2 from './images/projects/appleVsSamsungpic2.JPG';
+import invoicePic from './projectPics/invoiceApp.jpg';
+import schoolPic from './projectPics/schoolpic1.JPG';
+import AppleVsSamsungPic from './projectPics/appleVsSamsungpic1.jpg';
+import karaokemepic from './projectPics/karaokemepic.JPG';
+import micLogo from './svg/mic.png';
 
-import {ReactComponent as LinkSvg} from './images/projects/link.svg';
-import invoiceApp from './images/projects/invoiceApp.jpg';
-import { animate } from "framer-motion";
-
-import {ReactComponent as SchoolLogo} from './images/projects/school.svg';
-import schoolpic1 from './images/projects/schoolpic1.JPG';
 
 function App() {
   const parallaxRefs = React.useRef({});
   const [techFilter, setTechFilter] = useState();
-  const [techFilterText, setTechFilterText] = useState("all");
 
   const [languageAnimation, setLanguageAnimation] = useState();
   const [webAnimation, setWebAnimation] = useState();
@@ -29,8 +27,59 @@ function App() {
   const [toolAnimation, setToolAnimation] = useState();
 
   const projectBoxRefs = useRef([]);
+  const projectBoxContainer = useRef(null);
+  const projectContainerScales = useRef([1,1,1,1])
 
+  const [_, setValue] = useState(0);
+
+  const forceUpdate = () => {
+    setValue((prev) => prev + 1);
+  }
+
+  const DistanceFromCenter = () => {
+    const scales = [];
+    for (const element of projectBoxRefs.current) {
+      if (!element) continue;
+      const viewWidth = window.innerWidth;
+      const image = element.querySelector("#preview");
+      
+      const rect = element.getBoundingClientRect();
+      const center = window.innerWidth / 2;
+      const elementCenter = rect.left + rect.width / 2;
+      const distance = center - elementCenter;
+      
+      const normalizedDistance = distance / center; 
+      const scale = 1 - 0.6 * Math.pow(Math.abs(normalizedDistance), 1.3);
+
+      const rotationAngle = normalizedDistance * 10;
+      console.log("rotationAngle: " + rotationAngle)
+      console.log(image)
+
+      image.style.transform =`perspective(100px) rotate3D(0, 1, 0, ${rotationAngle}deg);` 
+      
+      // Clamp between min and max scale
+      const finalScale = Math.max(scale, 0.4);
+      scales.push(finalScale);
   
+      animate(element, { 
+        scale: finalScale 
+      }, {
+        delay: 0,
+        duration: 0,
+        ease: "easeOut"
+      });
+
+      animate(image, {
+        transform: `perspective(100px) rotate3D(0, 1, 0, ${rotationAngle}deg)`
+      }, {
+        delay: 0,
+        duration: 0,
+        ease: "easeOut"
+      })
+    }
+  
+    projectContainerScales.current = scales;
+  };
 
   const onLinkedInClick = () => {
     window.open("https://www.linkedin.com/in/andrew-kim-19171a1b7/");
@@ -48,14 +97,6 @@ function App() {
         parallaxRefs.current["Parallax"].container.current.style.overflow =
           "hidden scroll";
       }, 1200);
-
-      // document.querySelector(".skillsTab").addEventListener("click", () => {
-      //   const skillsBall = document.querySelector(".skillsBall");
-      //   skillsBall.classList.toggle("left-1");
-      //   skillsBall.classList.toggle("left-10");
-      //   console.log(techSkills);
-      //   setTechSkills((techSkills) => !techSkills);
-      // });
     };
   }, []);
 
@@ -118,20 +159,37 @@ function App() {
     },
   };
 
-  const childVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
+  const getVariant = (index) => {
+    // Fallback to 1 if scale not calculated yet
+    const scale = projectContainerScales.current[index] ?? 1;
+    console.log("scale " + index + ": " + scale)
+    
+    return {
+      hidden: { 
+        opacity: 0, 
+        y: 50,
+        scale: scale
+      },
+      visible: { 
+        opacity: 1, 
+        y: 0,
+        scale: scale
+      }
+    };
   };
 
-  const handleAnimation = (element) => {
+  const handleAnimation = (element, index) => {
     if (element) {
       const handleMouseEnter = () => {
-        animate(element, { scale: 1.1, boxShadow: "0px 0px 10px 0px #210c2e" });
+        animate(element, { scale: (1.1 * projectContainerScales.current[index]), boxShadow: "0px 0px 10px 0px #210c2e"});
+        element.style.zIndex = 200;
       };
 
       const handleMouseLeave = () => {
-        animate(element, { scale: 1, boxShadow: "0px 0px 0px 0px #210c2e" });
+        animate(element, { scale: (projectContainerScales.current[index]), boxShadow: "0px 0px 0px 0px #210c2e"});
+        element.style.zIndex = 0;
       };
+      element.style.transition = "0";
       element.addEventListener("mouseenter", handleMouseEnter);
       element.addEventListener("mouseleave", handleMouseLeave);
 
@@ -140,7 +198,35 @@ function App() {
         element.removeEventListener("mouseleave", handleMouseLeave);
       };
     }
-  };
+  }
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if(projectBoxContainer.current) {
+        window.addEventListener("resize", DistanceFromCenter);
+        projectBoxContainer.current.addEventListener("scroll", DistanceFromCenter);
+      }
+    }, 500);
+  
+    return () => {
+      clearTimeout(timer);
+      if(projectBoxContainer.current) {
+        window.removeEventListener("resize", DistanceFromCenter);
+        projectBoxContainer.current.removeEventListener("scroll", DistanceFromCenter);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Wait for refs to be set
+    const timer = setTimeout(() => {
+      DistanceFromCenter();
+      forceUpdate()
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
   
 
   return (
@@ -173,10 +259,9 @@ function App() {
                 </p>
                 <b className="block mt-10 gradient-text">I have recently:</b>
                 <p className="mt-4 text-lg md:pr-[50px] lg:pr-[200px] xl:pr-[400px]">
-                  developed an <b>interactive website</b> that compares{" "}
-                  <b>Apple's</b> and <b>Samsung's</b> flagship phone models
-                  during some of their major years in innovation. It features
-                  react three fiber and models I've created in blender
+                  devleoped a <b>full stack website</b> that utilizes <b>deep learning models</b> to generate Karaoke tracks from mp3 files. It also 
+                  <b>generates mp4 files</b> using ffmpeg and allows users to download the files. This website uses <b>AWS amplify, Typescript, React, JoyUI</b> for the frontend and <b>Python, Flask, ngrok,</b> for the backend.
+
                   <br/>
                   
                 </p>
@@ -235,17 +320,11 @@ function App() {
                   viewport={{once: true}}
                 >
                   <SkillBox
-                    text={
-                      "As the first language I've learned, I have a good understanding of the language and its concepts and have used it to create a variety of projects. It was my coding foundation to learn other languages."
-                    }
                     title={"Java"}
                     image={"javaLogo"}
                     animate={languageAnimation}
                   />
                   <SkillBox
-                    text={
-                      "Javascript was the second language I've gone into outside of school in order to create interactive web pages. I also have a good understanding of data structures and algorithms using Javascript from leetcode problems."
-                    }
                     title={"JavaScript"}
                     image={"JavaScript"}
                     animate={languageAnimation}
@@ -254,7 +333,11 @@ function App() {
                     title="C#" 
                     image="CSharp" 
                     animate={languageAnimation}
-
+                  />
+                  <SkillBox
+                    title={"Python"}
+                    image={"python"}
+                    animate={languageAnimation}
                   />
                 </motion.span>
 
@@ -267,41 +350,26 @@ function App() {
                   viewport={{once: true}}
                 >
                   <SkillBox
-                    text={
-                      "Using HTML, I have created a variety of web pages and believe I have a good understanding of the language and its concepts."
-                    }
                     title={"HTML"}
                     image={"HTML"}
                     animate={webAnimation}
                   />
                   <SkillBox
-                    text={
-                      "As the styling language of HTML I've learned how to not only create animations, layered designs, and responsive designs, but also center a div!"
-                    }
                     title={"CSS"}
                     image={"CSS"}
                     animate={webAnimation}
                   />
                   <SkillBox
-                    text={
-                      "TailwindCSS is a library I've learned once and constantly have gone back to for its ease of use and the efficiency of work it provies. I've used it to create this website!"
-                    }
                     title={"TailwindCSS"}
                     image={"Tailwind"}
                     animate={webAnimation}
                   />
                   <SkillBox
-                    text={
-                      "Due to its popularity and its massive community, I've decided to learn React to create websites at a much faster rate, and have easy access to libraries and components. I've used it to create this website!"
-                    }
                     title={"React"}
                     image={"react"}
                     animate={webAnimation}
                   />
                   <SkillBox
-                    text={
-                      "Jquery is my favorite library to use for animations and simple functions. Its easy to understand API docuemntation and its simplicity makes it a great tool to use for small projects."
-                    }
                     title={"jQuery"}
                     image={"jquery"}
                     animate={webAnimation}
@@ -317,25 +385,16 @@ function App() {
                   viewport={{once: true}}
                 >
                   <SkillBox
-                    text={
-                      "SpringBoot was my foot in the door for APIs and I've created a variety of projects using it. I've also learned how to use it to connect to databases and create a full stack website. Check out my Link Generator project!"
-                    }
                     title={"SpringBoot"}
                     image={"springBoot"}
                     animate={backendAnimation}
                   />
                   <SkillBox
-                    text={
-                      "As the first language I've learned, I have a good understanding of the language and its concepts and have used it to create a variety of projects."
-                    }
                     title={"Node.js"}
                     image={"Node"}
                     animate={backendAnimation}
                   />
                   <SkillBox
-                    text={
-                      "Started with MySQL from my database classes I transitioned to MongoDB to learn more about NoSQL databases."
-                    }
                     title={"MongoDB"}
                     image={"mongodb"}
                     animate={backendAnimation}
@@ -346,9 +405,6 @@ function App() {
                     animate={backendAnimation}
                   />
                   <SkillBox
-                    text={
-                      "Using Firebase I was able to create full stack websites without fully understanding the backend. I've used it to create my Hoop Tracker project and Eureka project"
-                    }
                     title={"Firebase"}
                     image={"firebase"}
                     animate={backendAnimation}
@@ -366,7 +422,7 @@ function App() {
                   <SkillBox title="AWS Cloud" image="awsCloud"  animate={toolAnimation}/>
                   <SkillBox title="docker" image="docker"  animate={toolAnimation}/>
                   <SkillBox title="postman" image="postman"  animate={toolAnimation}/>
-                  <SkillBox title="Blender" image="blender"  animate={toolAnimation}/>
+                  <SkillBox title="Blender" image="Blender"  animate={toolAnimation}/>
                   <SkillBox title="React Three Fiber" image="reactThreeFiber" animate={toolAnimation} />
                 </motion.span>
               </>
@@ -386,9 +442,10 @@ function App() {
             <motion.div
               variants={parentVariants}
               initial="hidden"
+              ref={projectBoxContainer}
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }} // Trigger animation when 50% in view
-              className="flex min-w-full w-auto h-[1000px] justify-between items-center px-[2%] lg:px-[10%] overflow-x-auto scroll-smooth projectsContainer" // Apply consistent gaps
+              className="flex min-w-full w-auto h-[800px] justify-between items-end px-[2%] sm:px-[18vw] md:px-[36vw] overflow-x-auto scroll-smooth projectsContainer gap-[40px] overflow-y-hidden pb-[20px]" // Apply consistent gaps
             >
               <motion.div 
                 ref={(element) => {
@@ -396,13 +453,33 @@ function App() {
                     projectBoxRefs.current.push(element); 
                   }
                 }}
-                variants={childVariants} 
+                variants={getVariant(0)} 
+                className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative cursor-pointer projectBox" 
+                onClick={() => {window.location.href = "https://master.d39gjbvu7ugqv4.amplifyapp.com/"}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[0], 0)}}
+              >
+                  <img src={micLogo} className=" aspect-auto h-[150px] w-auto absolute top-[-143px] left-[-50px]"/>
+                  <img src={karaokemepic} id="preview" alt="appleVsSamsung" className=" w-[400px] h-[220px] top-[40px] border-4 border-gray-200 border-solid  rounded-xl mt-4"/>
+                  <h1 className="text-white mt-[50px] text-xl text-center font-semibold">KaraokeMe</h1>
+                  <p className="p-[10px] text-gray-200 text-lg ">
+                    This is a full stack website that I made using AWS amplify, Typescript, React, Flask, and Firebase. It allows users to upload mp3 files and generates karaoke tracks using deep learning models. It also generates mp4 files using ffmpeg and allows users to download the files.
+                  </p>
+
+                  <p className="mt-4 text-center text-gray-200 text-md">hosted on aws</p>
+              </motion.div>
+              <motion.div 
+                ref={(element) => {
+                  if (element && !projectBoxRefs.current.includes(element)) {
+                    projectBoxRefs.current.push(element); 
+                  }
+                }}
+                variants={getVariant(1)} 
                 className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative cursor-pointer projectBox" 
                 onClick={() => {window.location.href = "https://master.d1a1fvsqctjek5.amplifyapp.com/"}}
-                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[0])}}
-                >
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[0], 0)}}
+              >
                   <AppleVsSamsung className=" aspect-auto h-[150px] w-auto absolute top-[-143px] left-[-50px]"/>
-                  <img src={AppleVsSamsungPic1} alt="appleVsSamsung" className=" w-[400px] h-[220px] top-[40px] border-4 border-gray-200 border-solid  rounded-xl leftImage mt-4"/>
+                  <img src={AppleVsSamsungPic} id="preview" alt="appleVsSamsung" className=" w-[400px] h-[220px] top-[40px] border-4 border-gray-200 border-solid  rounded-xl mt-4"/>
                   <h1 className="text-white mt-[50px] text-xl text-center font-semibold">Apple Vs Samsung</h1>
                   <p className="p-[10px] text-gray-200 text-lg ">
                     This is an interactive website I made using React Three Fiber and Blender. It compares Apple and Samsungs flagship models
@@ -417,13 +494,13 @@ function App() {
                     projectBoxRefs.current.push(element);
                   }
                 }}
-                variants={childVariants} 
+                variants={getVariant(2)} 
                 className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer"  
                 onClick={() => {window.location.href = "https://andrewkim09.github.io/Eureka/#/"}}
-                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[1])}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[1], 1)}}
               >
                 <SchoolLogo className="aspect-auto h-[150px] w-auto absolute top-[-113px] left-[-50px] text-gray-400"/>
-                  <img src={schoolpic1} alt="Eureka" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl mt-[40px]"/>
+                <img src={schoolPic} alt="Eureka" id="preview" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl mt-[40px]"/>
 
                 <h1 className="text-white mt-[50px] text-xl text-center">Eureka</h1>
                 <p className="p-[10px] text-gray-200 text-lg ">
@@ -438,13 +515,13 @@ function App() {
                     projectBoxRefs.current.push(element); 
                   }
                 }}
-                variants={childVariants} 
+                variants={getVariant(3)} 
                 className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer" 
                 onClick={() => {window.location.href = "https://dev.d3hu1k9aj04e16.amplifyapp.com/"}}
-                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[2])}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[2], 2)}}
               >
                   <LinkSvg className="aspect-auto h-[150px] w-auto absolute top-[-73px] left-[-50px] text-gray-400"/>
-                  <img src={invoiceApp} alt="invoiceapp" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl rightImage mt-4"/>
+                  <img src={invoicePic} alt="invoiceapp" id="preview" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl mt-4"/>
 
                   <h1 className="text-white mt-[50px] text-xl text-center">Invoice App</h1>
                   <p className="p-[10px] text-gray-200 text-lg ">
@@ -456,10 +533,10 @@ function App() {
             </motion.div>
 
           <div className="flex items-center justify-center">
-            <button className=" w-[400px] mt-[-100px] border-2 border-blue-600 h-[70px] flex items-center justify-center align-middle border-solid rounded-[10px] card-inner" 
+            <button className=" w-[400px] mt-[50px] border-2 border-blue-600 h-[70px] flex items-center justify-center align-middle border-solid rounded-[10px] card-inner" 
             onClick={() => {onGithubClick();}}>
-              <div class="card-front">Visit my github!</div>
-              <div class="card-back">https://github.com/AndrewKim09</div>
+              <div className="card-front">Visit my github for 20+ more!</div>
+              <div className="card-back">https://github.com/AndrewKim09</div>
             </button>
           </div>
         </ParallaxLayer>

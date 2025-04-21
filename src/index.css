@@ -217,7 +217,7 @@ code {
 
 /*images*/
 .photo{
-  background-image: url("./images/linkedinPhoto.svg");
+  background-image: url("./svg/linkedinPhoto.svg");
   background-size:cover;
   background-repeat: no-repeat;
   background-position-y: 70%;
@@ -228,12 +228,11 @@ code {
   border-radius: 56% 44% 50% 50% / 50% 50% 50% 50%;
 
   animation: photoBlob 4s ease-in-out infinite;
-
   
 }
 
 .yorkPhoto{
-  background-image: url("./images/YorkUni.png");
+  background-image: url("/public/images/YorkUni.png");
   background-size:contain;
   background-repeat: no-repeat;
   background-position-y: 70%;
@@ -247,7 +246,16 @@ code {
 }
 
 .javaLogo{
-  background-image: url("./images/java.svg");
+  background-image: url("./svg/java.svg");
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-position-y: 70%;
+  background-position-x: center;
+
+  aspect-ratio: 1/1;
+}
+.python{
+  background-image: url("/public/images/python.png");
   background-size:contain;
   background-repeat: no-repeat;
   background-position-y: 70%;
@@ -256,30 +264,15 @@ code {
   aspect-ratio: 1/1;
 }
 
-.leftBranch{
-  background-image: url("./images/leftBranch.svg");
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-position-x: center;
-  
-}
-
-.rightBranch{
-  background-image: url("./images/rightBranch.svg");
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-position-x: center;
-}
-
 .linkGenerator{
-  background-image: url("./images/table.PNG");
+  background-image: url("/public/images/table.PNG");
   background-size:cover;
   background-repeat: no-repeat;
   background-position-x: center;
 }
 
 .connect{
-  background-image: url("./images/connect.PNG");
+  background-image: url("/public/images/connect.PNG");
   background-size:contain;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -298,23 +291,16 @@ code {
   aspect-ratio: 1/1;
 }
 
-.hoopTracker{
-  background-image: url("./images/hoopTracker.PNG");
-  background-size:cover;
-  background-repeat: no-repeat;
-  background-position-x: left;
-
-}
 
 .eureka{
-  background-image: url("./images/Eureka.PNG");
+  background-image: url("/public/images/Eureka.PNG");
   background-size:contain;
   background-repeat: no-repeat;
   background-position-x: center;
 }
 
 .github{
-  background-image: url("./images/github.png");
+  background-image: url("/public/images/github.png");
   background-size:contain;
   width: 100%;
   margin-bottom: 40px;
@@ -325,92 +311,94 @@ code {
 }
 
 .CSS{
-  background-image: url("./images/CSS.svg");
+  background-image: url("/public/images/CSS.svg");
 }
 
 .HTML{
-  background-image: url("./images/1024px-HTML5_Badge.svg.png");
+  background-image: url("/public/images/1024px-HTML5_Badge.svg.png");
 }
 
 .JavaScript{
-  background-image: url("./images/javascript.png");
+  background-image: url("/public/images/javascript.png");
 }
 
 .react{
-  background-image: url("./images/React.png");
+  background-image: url("/public/images/React.png");
 }
 
 .Node{
-  background-image: url("./images/nodeJs.png");
+  background-image: url("/public/images/nodeJs.png");
 }
 
 .Tailwind{
-  background-image: url("./images/Tailwind_CSS_logo.svg.png");
+  background-image: url("/public/images/Tailwind_CSS_logo.svg.png");
 }
 
 .springBoot{
-  background-image: url("./images/Spring_Boot.svg.png");
+  background-image: url("/public/images/Spring_Boot.svg.png");
 }
 
 .jquery{
-  background-image: url("./images/jquery.svg");
+  background-image: url("./svg/jquery.svg");
 }
 
 .mongodb{
-  background-image: url("./images/mongodb.svg");
+  background-image: url("./svg/mongodb.svg");
 }
 
 .firebase{
-  background-image: url("./images/firebase.svg");
+  background-image: url("./svg/firebase.svg");
 }
 
 .reactThreeFiber{
-  background-image: url("./images/reactThreeFiber.png");
+  background-image: url("/public/images/reactThreeFiber.png");
 }
 
 .awsCloud{
-  background-image: url("./images/awsCloud.png");
+  background-image: url("/public/images/awsCloud.png");
 }
 
 .Blender{
-  background-image: url("./images/Blender.png");
+  background-image: url("/public/images/Blender.png");
 }
 
 .CSharp{
-  background-image: url("./images/CSharp.svg");
+  background-image: url("./svg/CSharp.svg");
 }
 
 .docker{
-  background-image: url("./images/docker.jpeg");
+  background-image: url("/public/images/docker.jpeg");
 }
 
 .MySQL{
-  background-image: url("./images/MySQL.png");
+  background-image: url("/public/images/MySQL.png");
 }
 
 .postman{
-  background-image: url("./images/postman.png");
+  background-image: url("/public/images/postman.png");
 }
 
 
-
+.micLogo{
+  background-image: url("./svg/mic.png");
+}
 
 
 
 .communication{
-  background-image: url("./images/communication.png");
+  background-image: url("/public/images/communication.png");
 }
 
 .adaptable{
-  background-image: url("./images/adaptability.png");
+  background-image: url("/public/images/adaptability.png");
 }
 
 .teamwork{
-  background-image: url("./images/teamwork.webp");
+  background-image: url("/public/images/teamwork.webp");
 }
 
 .timeManagement{
-  background-image: url("./images/timeManagement.png");
+  background-image: url("/public/images/timeManagement.png");
 }
 
 .problemSolving{
@@ -418,15 +406,15 @@ code {
 }
 
 .attentionToDetail{
-  background-image: url("./images/attentionToDetail.png");
+  background-image: url("/public/images/attentionToDetail.png");
 }
 
 .adaptability{
-  background-image: url("./images/adaptability.png");
+  background-image: url("/public/images/adaptability.png");
 }
 
 .problemSolving{
-  background-image: url("./images/problemSolving.png");
+  background-image: url("/public/images/problemSolving.png");
 }
 
 .gradient-text {
