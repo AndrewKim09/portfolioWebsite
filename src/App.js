@@ -9,8 +9,10 @@ import { animate, distance, transform } from "framer-motion";
 import {ReactComponent as AppleVsSamsung} from "./svg/AppleVsSamsung.svg";
 import {ReactComponent as SchoolLogo} from "./svg/school.svg";
 import {ReactComponent as LinkSvg} from "./svg/link.svg";
+import {ReactComponent as InvoiceSvg} from "./svg/invoice.svg";
 
 import invoicePic from './projectPics/invoiceApp.jpg';
+import linkGeneratorPic from './projectPics/linkgeneratorpic.PNG';
 import schoolPic from './projectPics/schoolpic1.JPG';
 import AppleVsSamsungPic from './projectPics/appleVsSamsungpic1.jpg';
 import karaokemepic from './projectPics/karaokemepic.JPG';
@@ -521,6 +523,28 @@ function App() {
                 onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[2], 2)}}
               >
                   <LinkSvg className="aspect-auto h-[150px] w-auto absolute top-[-73px] left-[-50px] text-gray-400"/>
+                  <img src={linkGeneratorPic} alt="invoiceapp" id="preview" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl mt-4"/>
+
+                  <h1 className="text-white mt-[50px] text-xl text-center">Link Generator</h1>
+                  <p className="p-[10px] text-gray-200 text-lg ">
+                    This is a full stack website I made using SpringBoot and React. It is a simple invoice app that allows users to convert files to links that can be sent to others to download.
+                    This was a a project I made to send files to my friends without being limited by discords 5mb limit.
+                  </p>
+                  <p className="mt-4 text-center text-gray-200 text-md">hosted on Github Pages</p>
+              </motion.div>
+
+              <motion.div 
+                ref={(element) => {
+                  if (element && !projectBoxRefs.current.includes(element)) {
+                    projectBoxRefs.current.push(element); 
+                  }
+                }}
+                variants={getVariant(4)} 
+                className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer" 
+                onClick={() => {window.location.href = "https://dev.d3hu1k9aj04e16.amplifyapp.com/"}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[2], 2)}}
+              >
+                  <InvoiceSvg className="aspect-auto h-[150px] w-auto absolute top-[-83px] left-[-90px] text-gray-400"/>
                   <img src={invoicePic} alt="invoiceapp" id="preview" className=" w-[400px] border-4 border-gray-200 border-solid aspect-auto rounded-xl mt-4"/>
 
                   <h1 className="text-white mt-[50px] text-xl text-center">Invoice App</h1>
