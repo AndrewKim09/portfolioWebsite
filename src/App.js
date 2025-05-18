@@ -519,7 +519,7 @@ function App() {
                 }}
                 variants={getVariant(3)} 
                 className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative projectBox cursor-pointer" 
-                onClick={() => {window.location.href = "https://dev.d3hu1k9aj04e16.amplifyapp.com/"}}
+                onClick={() => {window.location.href = "https://andrewkim09.github.io/linkGeneratorFrontEnd/"}}
                 onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[2], 2)}}
               >
                   <LinkSvg className="aspect-auto h-[150px] w-auto absolute top-[-73px] left-[-50px] text-gray-400"/>
