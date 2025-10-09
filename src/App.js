@@ -14,9 +14,11 @@ import {ReactComponent as InvoiceSvg} from "./svg/invoice.svg";
 import invoicePic from './projectPics/invoiceApp.jpg';
 import linkGeneratorPic from './projectPics/linkgeneratorpic.PNG';
 import schoolPic from './projectPics/schoolpic1.JPG';
+import CodingDuelsPic from './projectPics/CodingDuelsPreview.PNG';
 import AppleVsSamsungPic from './projectPics/appleVsSamsungpic1.jpg';
 import karaokemepic from './projectPics/karaokemepic.JPG';
 import micLogo from './svg/mic.png';
+import VSLogo from './svg/VSLogo.svg';
 
 
 function App() {
@@ -457,6 +459,26 @@ function App() {
                 }}
                 variants={getVariant(0)} 
                 className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative cursor-pointer projectBox" 
+                onClick={() => {window.location.href = "https://coding-duel.vercel.app/"}}
+                onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[0], 0)}}
+              >
+                  <img src={VSLogo} className=" aspect-auto h-[450px] w-auto absolute top-[-263px] left-[-150px]"/>
+                  <img src={CodingDuelsPic} id="preview" alt="Coding-duel" className=" w-[400px] h-[220px] top-[40px] border-4 border-gray-200 border-solid  rounded-xl mt-4"/>
+                  <h1 className="text-white mt-[50px] text-xl text-center font-semibold">Coding Duel</h1>
+                  <p className="p-[10px] text-gray-200 text-lg ">
+                    website that I made using Next.js, Typescript, Socket.io and Uvicorn. It allows users from around the world to connect via websockets and compete in a 1v1 Leetcode-style coding competition.
+                  </p>
+
+                  <p className="mt-4 text-center text-gray-200 text-md">hosted on Vercel</p>
+              </motion.div>
+              <motion.div 
+                ref={(element) => {
+                  if (element && !projectBoxRefs.current.includes(element)) {
+                    projectBoxRefs.current.push(element); 
+                  }
+                }}
+                variants={getVariant(0)} 
+                className="min-w-[400px] max-w-[400px] h-[600px] border-4 border-solid border-[#210c2e] bg-[#1e1725] rounded-lg shadow-xl relative cursor-pointer projectBox" 
                 onClick={() => {window.location.href = "https://master.d39gjbvu7ugqv4.amplifyapp.com/"}}
                 onAnimationComplete={() => {handleAnimation(projectBoxRefs.current[0], 0)}}
               >
@@ -464,7 +486,7 @@ function App() {
                   <img src={karaokemepic} id="preview" alt="appleVsSamsung" className=" w-[400px] h-[220px] top-[40px] border-4 border-gray-200 border-solid  rounded-xl mt-4"/>
                   <h1 className="text-white mt-[50px] text-xl text-center font-semibold">KaraokeMe</h1>
                   <p className="p-[10px] text-gray-200 text-lg ">
-                    This is a full stack website that I made using AWS amplify, Typescript, React, Flask, and Firebase. It allows users to upload mp3 files and generates karaoke tracks using deep learning models. It also generates mp4 files using ffmpeg and allows users to download the files.
+                    Full stack website that I made using AWS amplify, Typescript, React, Flask, and Firebase. It allows users to upload mp3 files and generates karaoke tracks using deep learning models. It also generates mp4 files using ffmpeg and allows users to download the files.
                   </p>
 
                   <p className="mt-4 text-center text-gray-200 text-md">hosted on aws</p>
