@@ -259,12 +259,12 @@ function App() {
                   My name is Andrew Kim
                 </h1>
                 <p className="mt-4 text-xl">
-                  I am a <b>Full-Stack Developer</b> specializing in React, Typescript, And Java
+                  I am a <b>Full-Stack Developer</b> specializing in web development in the cloud
                 </p>
                 <b className="block mt-10 gradient-text">I have recently:</b>
                 <p className="mt-4 text-lg md:pr-[50px] lg:pr-[200px] xl:pr-[400px]">
-                  devleoped a <b>full stack website</b> that utilizes <b>deep learning models</b> to generate Karaoke tracks from mp3 files. It also 
-                  <b>generates mp4 files</b> using ffmpeg and allows users to download the files. This website uses <b>AWS amplify, Typescript, React, JoyUI</b> for the frontend and <b>Python, Flask, ngrok,</b> for the backend.
+                  devleoped a <b>full stack website</b> that utilizes <b>WebSockets</b> to pair two coders from across the world
+                  in a <b>Leetcode-style 1v1</b> with a messaging system. Utilizes a matchmaking system based off user match history to provide a competitive gameplay
 
                   <br/>
                   
@@ -600,8 +600,6 @@ function App() {
           <div className="flex flex-col items-center pt-10">
             <div className="w-[400px] h-[200px] yorkPhoto border-2 border-solid border-red-900"></div>
             <p className="px-10 pt-10 text-2xl text-white">
-              I am currently in my last year learning about advanced data
-              structures/aglorithms and systems.
             </p>
           </div>
 
